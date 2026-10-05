@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { byCategory, categoryInfo, type Category } from '../../data/products';
+import { site } from '../../data/site';
+const order: Category[] = ['spawn', 'culture', 'fresh'];
+---
+<Base
+  title={`Products: Mushroom Spawn, Pure Cultures & Fresh Mushrooms | ${site.legalName}`}
+  description="Mushroom spawn, pure cultures and fresh mushrooms: button, cremini/brown and oyster. Choose a product and request a quote."
+>
+<main>
+  <header class="page-top"><div class="wrap">
+    <div class="crumbs"><a href="/">Home</a> / Products</div>
+    <h1 class="rv">Our Products</h1>
+    <p class="lead rv">Mushroom spawn, pure cultures and fresh mushrooms. Choose a product to see pack sizes, storage and ordering.</p>
+  </div></header>
+  {order.map((c) => (
+    <section class="hub-sec" id={categoryInfo[c].id}><div class="wrap">
+      <h2 class="rv">{categoryInfo[c].title}</h2>
+      <p class="sub rv">{categoryInfo[c].blurb}</p>
+      <div class="grid">{byCategory(c).map((p) => <ProductCard p={p} />)}</div>
+    </div></section>
+  ))}
+</main>
+</Base>

@@ -1,0 +1,94 @@
+---
+import Base from '../layouts/Base.astro';
+import ProductCard from '../components/ProductCard.astro';
+import { products, getProduct, categoryInfo } from '../data/products';
+import { site, waLink } from '../data/site';
+
+export function getStaticPaths() {
+  return products.map((product) => ({ params: { slug: product.slug }, props: { product } }));
+}
+
+const { product: p } = Astro.props;
+const related = p.related.map((s) => getProduct(s)).filter((x) => x !== undefined);
+const cat = categoryInfo[p.category];
+const base = Astro.site;
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', base).href },
+    { '@type': 'ListItem', position: 2, name: 'Products', item: new URL('/products/', base).href },
+    { '@type': 'ListItem', position: 3, name: p.name, item: new URL(`/${p.slug}/`, base).href },
+  ],
+};
+const quoteMsg = `Hello, I would like a quote for ${p.name}.`;
+---
+<Base title={`${p.name} | ${site.legalName}`} description={p.metaDescription} jsonLd={ld}>
+<main>
+  <header class="page-top pp-hero"><div class="wrap">
+    <div class="crumbs"><a href="/">Home</a> / <a href="/products/">Products</a> / {p.name}</div>
+    <div class="eyebrow">{cat.title}</div>
+    <h1 class="rv">{p.name}</h1>
+    {p.latin && <div class="tag">{p.latin}</div>}
+    <p class="lead rv">{p.summary}</p>
+    <div class="cta">
+      <a class="btn p" href={waLink(quoteMsg)} data-track="whatsapp-product" data-product={p.slug}>Request a Quote on WhatsApp</a>
+      <a class="btn g" href="/#contact">Contact Us</a>
+    </div>
+  </div></header>
+
+  <section class="pp-sec"><div class="wrap pp-grid">
+    <div class="box rv"><h2>Who it is for</h2><p>{p.audience}</p></div>
+    <div class="box rv"><h2>Characteristics</h2><ul class="checks">{p.characteristics.map((c) => <li>{c}</li>)}</ul></div>
+  </div></section>
+
+  <section class="pp-sec"><div class="wrap">
+    <div class="box rv">
+      <h2>Pack sizes</h2>
+      <table class="ptable">
+        <thead><tr><th>Pack</th><th>Availability</th><th></th></tr></thead>
+        <tbody>
+          {p.packs.map((pack) => (
+            <tr>
+              <td>{pack}</td>
+              <td>{p.availability}</td>
+              <td><a class="more" href={waLink(`Hello, I would like a quote for ${p.name}, ${pack}.`)} data-track="whatsapp-pack" data-product={p.slug}>Request quote &rarr;</a></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p class="note">Price: on request. {p.packNote ?? ''}</p>
+    </div>
+  </div></section>
+
+  <section class="pp-sec"><div class="wrap pp-grid">
+    <div class="box rv"><h2>Storage and shelf life</h2><p>{p.storage}</p><p>{p.shelfLife}</p></div>
+    <div class="box rv"><h2>Usage</h2><p>{p.usage}</p></div>
+  </div></section>
+
+  <section class="pp-sec"><div class="wrap pp-grid">
+    <div class="rv">
+      <h2>How to order</h2>
+      <ol class="steps">
+        <li>Message us on WhatsApp or request a quote with the product and quantity you need.</li>
+        <li>We confirm availability, pack sizes, price and delivery.</li>
+        <li>You approve the quotation and we arrange supply.</li>
+      </ol>
+    </div>
+    <div class="faq rv">
+      <h2>Frequently asked questions</h2>
+      {p.faqs.map((f) => <details><summary>{f.q}</summary><p>{f.a}</p></details>)}
+    </div>
+  </div></section>
+
+  <section class="pp-sec"><div class="wrap">
+    <h2 class="rv">Related products</h2>
+    <div class="grid carousel">{related.map((r) => <ProductCard p={r} />)}</div>
+  </div></section>
+
+  <section class="final alt"><div class="wrap">
+    <h2 class="rv">Ready to Order?</h2>
+    <div class="cta"><a class="btn p" href={waLink(quoteMsg)} data-track="whatsapp-product-footer" data-product={p.slug}>WhatsApp Us</a><a class="btn g" href="/#contact">Request a Quote</a></div>
+  </div></section>
+</main>
+</Base>

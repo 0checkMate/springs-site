@@ -1,0 +1,50 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { waLink } from '../data/site';
+
+interface Props { title: string; description: string; scene?: boolean; jsonLd?: object }
+const { title, description, scene = false, jsonLd } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <link rel="canonical" href={canonical}>
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <noscript><style>.rv{opacity:1!important;transform:none!important}</style></noscript>
+  {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+</head>
+<body>
+  <div id="waves" aria-hidden="true">
+    <svg viewBox="0 0 2400 300" preserveAspectRatio="none"><path fill="var(--w1)" d="M0 150 C200 60 400 60 600 150 S1000 240 1200 150 C1400 60 1600 60 1800 150 S2200 240 2400 150 V300 H0Z"/></svg>
+    <svg viewBox="0 0 2400 300" preserveAspectRatio="none"><path fill="var(--w2)" d="M0 170 C250 90 450 250 600 170 S950 80 1200 170 C1450 90 1650 250 1800 170 S2150 80 2400 170 V300 H0Z"/></svg>
+    <svg viewBox="0 0 2400 300" preserveAspectRatio="none"><path fill="var(--w3)" d="M0 200 C150 140 450 260 600 200 S1050 140 1200 200 C1350 140 1650 260 1800 200 S2250 140 2400 200 V300 H0Z"/></svg>
+  </div>
+  {scene && (
+    <>
+      <svg id="thread" viewBox="0 0 34 1000" preserveAspectRatio="none" aria-hidden="true"><path id="tp" pathLength="1" d="M17 0 C34 80 0 160 17 240 S34 400 17 480 0 640 17 720 S34 880 17 1000" fill="none" stroke="var(--clay)" stroke-width="2" stroke-linecap="round" stroke-dasharray="1" stroke-dashoffset="1" vector-effect="non-scaling-stroke"/></svg>
+      <canvas id="bg" aria-hidden="true"></canvas>
+    </>
+  )}
+  <Nav />
+  <slot />
+  <Footer />
+  <a class="wa" href={waLink()} data-track="whatsapp-float">WhatsApp</a>
+  <script>
+    import '../scripts/ui.js';
+    import '../scripts/carousel.js';
+  </script>
+  {scene && <script>import '../scripts/scene.js';</script>}
+</body>
+</html>

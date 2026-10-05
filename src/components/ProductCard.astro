@@ -1,0 +1,11 @@
+---
+import type { Product } from '../data/products';
+interface Props { p: Product }
+const { p } = Astro.props;
+---
+<a class="card rv" href={`/${p.slug}/`}>
+  <h3>{p.name}</h3>
+  {p.latin && <div class="tag">{p.latin}</div>}
+  <p>{p.summary} Pack sizes: {p.packs.join(', ')}.</p>
+  <span class="more">{p.cta} &rarr;</span>
+</a>
