@@ -127,7 +127,7 @@ export const products: Product[] = [
     summary: 'Fresh button mushrooms grown by the team that produces our spawn.',
     cta: 'Enquire / Order',
     packs: ['250g'],
-    packNote: '[CONFIRM UNITS: fresh mushrooms]',
+    packNote: '',
     audience: 'Wholesale buyers such as hotels, restaurants, supermarkets, grocers and distributors, and retail customers [CONFIRM]',
     characteristics: ['[GRADE OR SIZE]', '[PACKAGING]', '[FRESHNESS AND HANDLING]'],
     storage: 'Keep Refrigirated',
