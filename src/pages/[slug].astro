@@ -37,7 +37,21 @@ const quoteMsg = `Hello, I would like a quote for ${p.name}.`;
     </div>
   </div></header>
 
-
+<section class="pp-sec product-gallery-section">
+  <div class="wrap">
+    <div class="grid carousel product-gallery">
+      {p.images.map((image, index) => (
+        <div class="card rv product-image-card">
+          <img
+            src={image}
+            alt={`${p.name} - image ${index + 1}`}
+            loading={index === 0 ? 'eager' : 'lazy'}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
 
   <section class="pp-sec"><div class="wrap">
     <div class="box rv">

@@ -8,6 +8,7 @@ export interface Product {
   slug: string;
   category: Category;
   name: string;
+  images: string[];
   latin?: string;
   summary: string;
   cta: string;
@@ -48,6 +49,12 @@ export const products: Product[] = [
     slug: 'button-mushroom-spawn',
     category: 'spawn',
     name: 'Button Mushroom Spawn',
+    images: [
+      '/images/products/Button3.jpeg',
+      '/images/products/Button2.jpeg',
+      '/images/products/Button1.jpeg',
+
+    ],
     latin: 'Agaricus bisporus',
     summary: 'Dependable spawn for compost-based button mushroom production.',
     cta: 'Request Button Spawn',
@@ -66,6 +73,12 @@ export const products: Product[] = [
     slug: 'cremini-mushroom-spawn',
     category: 'spawn',
     name: 'Cremini/Brown Spawn',
+    images: [
+      '/images/products/Cremini3.jpeg',
+      '/images/products/Cremini2.jpeg',
+      '/images/products/Cremini1.jpeg',
+
+    ],
     latin: 'Agaricus bisporus, brown strain',
     summary: 'Brown-cap strain for growers targeting the cremini market.',
     cta: 'Request Cremini Spawn',
@@ -84,6 +97,12 @@ export const products: Product[] = [
     slug: 'oyster-mushroom-spawn',
     category: 'spawn',
     name: 'Oyster Spawn',
+    images: [
+      '/images/products/oyster2.jpeg',
+      '/images/products/oyster3.jpeg',
+      '/images/products/oyster1.jpeg',
+
+    ],
     latin: 'Pleurotus species',
     summary: 'Spawn for straw and agricultural-waste substrates.',
     cta: 'Request Oyster Spawn',
@@ -102,6 +121,12 @@ export const products: Product[] = [
     slug: 'pure-cultures',
     category: 'culture',
     name: 'Pure Mushroom Cultures',
+    images: [
+      '/images/products/oyster3.jpeg',
+      '/images/products/Button3.jpeg',
+      '/images/products/Cremini3.jpeg',
+
+    ],
     latin: 'Cremini Muchroom(Agaricus bisporus-Brown Strain). Button Mushroom(Agaricus bisporus - White Strain). Oyster Mushroom(Pleurotus species)',
     summary: 'Pure cultures for growers who produce their own spawn.',
     cta: 'Request Cultures',
@@ -124,6 +149,12 @@ export const products: Product[] = [
     slug: 'fresh-button-mushrooms',
     category: 'fresh',
     name: 'Fresh Button Mushrooms',
+    images: [
+      '/images/products/Button1.jpeg',
+      '/images/products/Button2.jpeg',
+      '/images/products/Button3.jpeg',
+
+    ],
     summary: 'Fresh button mushrooms grown by the team that produces our spawn.',
     cta: 'Enquire / Order',
     packs: ['250g'],
@@ -138,10 +169,42 @@ export const products: Product[] = [
     metaDescription: 'Fresh button mushrooms for wholesale and retail buyers in Kenya, grown by a laboratory-based mushroom producer. Request a quote.',
     related: ['fresh-cremini-mushrooms', 'button-mushroom-spawn'],
   },
+
+{
+    slug: 'fresh-oyster-mushrooms',
+    category: 'fresh',
+    name: 'Fresh Oyster Mushrooms',
+    images: [
+      '/images/products/oyster1.jpeg',
+      '/images/products/oyster2.jpeg',
+      '/images/products/oyster3.jpeg',
+
+    ],
+    summary: 'Fresh oyster mushrooms grown by the team that produces our spawn.',
+    cta: 'Enquire / Order',
+    packs: ['250g'],
+    packNote: '',
+    audience: 'Wholesale buyers such as hotels, restaurants, supermarkets, grocers and distributors, and retail customers [CONFIRM]',
+    characteristics: ['[GRADE OR SIZE]', '[PACKAGING]', '[FRESHNESS AND HANDLING]'],
+    storage: 'Keep Refrigirated',
+    shelfLife: '7 Days Refrigirated',
+    usage: 'Prepare as desired',
+    availability: 'Available',
+    faqs: freshFaqs,
+    metaDescription: 'Fresh oyster mushrooms for wholesale and retail buyers in Kenya, grown by a laboratory-based mushroom producer. Request a quote.',
+    related: ['fresh-cremini-mushrooms', 'oyster-mushroom-spawn'],
+  },
+
   {
     slug: 'fresh-cremini-mushrooms',
     category: 'fresh',
     name: 'Fresh Cremini/Brown Mushrooms',
+    images: [
+      '/images/products/Cremini2.jpeg',
+      '/images/products/Cremini1.jpeg',
+      '/images/products/Cremini3.jpeg',
+
+    ],
     summary: 'Fresh cremini (brown) mushrooms for wholesale and retail buyers.',
     cta: 'Enquire / Order',
     packs: ['250g'],

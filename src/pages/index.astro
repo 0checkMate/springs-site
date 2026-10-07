@@ -23,7 +23,6 @@ const freshTiles = byCategory('fresh');
   <h2 class="rv">Fresh Mushrooms</h2><p class="sub rv">Fresh button and cremini/brown mushrooms, grown by the team that produces our spawn. Wholesale and retail available.</p>
   <div class="grid carousel">
     {freshTiles.map((p) => <ProductCard p={p} />)}
-    <div class="card rv"><h3>Current Availability</h3><p>[AVAILABILITY - update regularly]</p><a class="more" href="#contact">Enquire / Order &rarr;</a></div>
   </div>
 </div></section>
 
@@ -47,13 +46,16 @@ const freshTiles = byCategory('fresh');
 <section id="lab"><div class="wrap">
   <h2 class="rv">Our Spawn Lab</h2><p class="sub rv">A controlled, step-by-step process from culture to finished spawn.</p>
   <div class="flow rv"><span>Culture preparation</span><span>Mother culture</span><span>Grain preparation</span><span>Sterilisation</span><span>Inoculation</span><span>Incubation</span><span>Quality control</span><span>Finished spawn</span></div>
-  <div class="ph rv">[PHOTO: laboratory, laminar-flow work, spawn bags in incubation]</div>
-  <p class="rv" style="margin-top:22px"><a class="more" href="#lab">Explore the Laboratory &rarr;</a></p>
+
 </div></section>
 
 <section id="about" class="alt"><div class="wrap cols">
   <div class="rv"><h2>Experienced People. Controlled Production.</h2><p class="sub">Spawn production is supported by trained personnel with relevant expertise in mushroom cultivation, microbiology, laboratory procedures and quality control.</p><a class="more" href="#about">Meet Our Team &rarr;</a></div>
-  <div class="ph rv">[PHOTO: [STAFF NAME], [ROLE], in the laboratory]</div>
+  <div class="ph rv"><img
+  src="/images/team.jpeg"
+  alt="Our mushroom production team"
+  loading="lazy"
+/></div>
 </div></section>
 
 <section id="grow" class="alt"><div class="wrap">

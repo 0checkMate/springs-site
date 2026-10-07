@@ -9,11 +9,11 @@ R.setPixelRatio(Math.min(devicePixelRatio,2));
 var S=new THREE.Scene(),C=new THREE.PerspectiveCamera(45,1,.1,100);C.position.set(0,0,10);
 S.add(new THREE.HemisphereLight(0xfff3df,0x8a6a4a,.95));
 var d=new THREE.DirectionalLight(0xfff0d6,.9);d.position.set(-4,6,5);S.add(d);
-function mush(cap,stem,sx,sy,stemH){var G=new THREE.Group(),p=[],t;
-for(t=0;t<=12;t++){var a=t/12*Math.PI/2;p.push(new THREE.Vector2(Math.cos(a)*1.1*sx,Math.sin(a)*.78*sy))}
-p.push(new THREE.Vector2(.92*sx,-.05));p.push(new THREE.Vector2(.25,.05));
-var c=new THREE.Mesh(new THREE.LatheGeometry(p,56),new THREE.MeshStandardMaterial({color:cap,roughness:.95,side:THREE.DoubleSide}));c.position.y=stemH-.55;G.add(c);
-var s=new THREE.Mesh(new THREE.CylinderGeometry(.27,.4,stemH,32),new THREE.MeshStandardMaterial({color:stem,roughness:.95}));s.position.y=stemH/2-.55;G.add(s);return G}
+// function mush(cap,stem,sx,sy,stemH){var G=new THREE.Group(),p=[],t;
+// for(t=0;t<=12;t++){var a=t/12*Math.PI/2;p.push(new THREE.Vector2(Math.cos(a)*1.1*sx,Math.sin(a)*.78*sy))}
+// p.push(new THREE.Vector2(.92*sx,-.05));p.push(new THREE.Vector2(.25,.05));
+// var c=new THREE.Mesh(new THREE.LatheGeometry(p,56),new THREE.MeshStandardMaterial({color:cap,roughness:.95,side:THREE.DoubleSide}));c.position.y=stemH-.55;G.add(c);
+// var s=new THREE.Mesh(new THREE.CylinderGeometry(.27,.4,stemH,32),new THREE.MeshStandardMaterial({color:stem,roughness:.95}));s.position.y=stemH/2-.55;G.add(s);return G}
 var set=[[0xf1e8d6,0xf6efe0,1,1,1.1,0,.2,0,1],[0xd9925a,0xe9dcc6,1.3,1.2,1.5,-1.9,-.9,-1,.9],[0xd8cdb6,0xe6dccb,1.15,.7,.7,1.7,-1.1,-.5,.8],[0xf1e8d6,0xf6efe0,.65,.65,.8,-.7,1.3,-2,.7]];
 var grp=new THREE.Group(),ms=set.map(function(c,i){var m=mush(c[0],c[1],c[2],c[3],c[4]);m.position.set(c[5],c[6],c[7]);m.scale.setScalar(c[8]);m.rotation.z=(i%2?.2:-.15);m.userData={y:c[6],ph:i*1.9};grp.add(m);return m});
 S.add(grp);
