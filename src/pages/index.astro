@@ -5,6 +5,9 @@ import { byCategory } from '../data/products';
 import { site, waLink } from '../data/site';
 const spawnTiles = [...byCategory('spawn'), ...byCategory('culture')];
 const freshTiles = byCategory('fresh');
+import ArticleCard from '../components/ArticleCard.astro';
+import { getCollection } from 'astro:content';
+const guides = (await getCollection('articles')).sort((a, b) => a.data.order - b.data.order).slice(0, 4);
 ---
 <Base
   scene
@@ -61,12 +64,9 @@ const freshTiles = byCategory('fresh');
 <section id="grow" class="alt"><div class="wrap">
   <h2 class="rv">For Mushroom Growers</h2><p class="sub rv">The Grower's Knowledge Centre: spawn selection, growing guides, substrate information, production advice, common problems and FAQs.</p>
   <div class="grid carousel">
-    <a class="card rv" href="#grow"><h3>How to select good button mushroom spawn</h3><span class="more">Read &rarr;</span></a>
-    <a class="card rv" href="#grow"><h3>How much spawn per tonne of compost</h3><span class="more">Read &rarr;</span></a>
-    <a class="card rv" href="#grow"><h3>Causes of slow spawn colonisation</h3><span class="more">Read &rarr;</span></a>
-    <a class="card rv" href="#grow"><h3>Harvesting and post-harvest handling</h3><span class="more">Read &rarr;</span></a>
+    {guides.map((a) => <ArticleCard id={a.id} title={a.data.title} category={a.data.category} />)}
   </div>
-  <div class="cta"><a class="btn g" href="#grow">Visit Grower's Knowledge Centre</a></div>
+  <div class="cta"><a class="btn g" href="/grow/">Visit Grower's Knowledge Centre</a></div>
 </div></section>
 
 <!-- Wholesale section kept out for now. Restore when ready.

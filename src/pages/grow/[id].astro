@@ -1,0 +1,63 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { getCollection, render } from 'astro:content';
+import { getProduct } from '../../data/products';
+import { site, waLink } from '../../data/site';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles');
+  return articles.map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { title, description, category, updated, products } = entry.data;
+const related = products.map((s) => getProduct(s)).filter((p) => p !== undefined);
+const base = Astro.site;
+const ld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', base).href },
+      { '@type': 'ListItem', position: 2, name: "Grower's Knowledge Centre", item: new URL('/grow/', base).href },
+      { '@type': 'ListItem', position: 3, name: title, item: new URL(`/grow/${entry.id}/`, base).href },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description,
+    ...(updated ? { dateModified: updated.toISOString().slice(0, 10) } : {}),
+    publisher: { '@type': 'Organization', name: site.legalName },
+  },
+];
+---
+<Base title={`${title} | ${site.legalName}`} description={description} jsonLd={ld}>
+<main>
+  <header class="page-top"><div class="wrap article-wrap">
+    <div class="crumbs"><a href="/">Home</a> / <a href="/grow/">Grower's Knowledge Centre</a> / {category}</div>
+    <h1 class="rv">{title}</h1>
+    <p class="lead rv">{description}</p>
+    {updated && <p class="note">Updated {updated.toISOString().slice(0, 10)}</p>}
+  </div></header>
+
+  <section class="pp-sec"><div class="wrap article-wrap">
+    <article class="prose box"><Content /></article>
+  </div></section>
+
+  {related.length > 0 && (
+    <section class="pp-sec"><div class="wrap">
+      <h2 class="rv">Related products</h2>
+      <div class="grid">{related.map((p) => <ProductCard p={p} />)}</div>
+    </div></section>
+  )}
+
+  <section class="final alt"><div class="wrap">
+    <h2 class="rv">Need advice for your farm?</h2>
+    <div class="cta"><a class="btn p" href={waLink(`Hello, I read "${title}" and have a question.`)} data-track="whatsapp-article">Ask on WhatsApp</a><a class="btn g" href="/grow/">More guides</a></div>
+  </div></section>
+</main>
+</Base>

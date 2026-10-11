@@ -3,8 +3,8 @@ export const site = {
   legalName: 'SPRINGS AGRITECH',
   brandFirst: 'SPRINGS',
   brandSecond: 'MUSHROOMS',
-  phone: '254729066995',
-  email: '[EMAIL]',
+  phone: '254704755765',
+  email: 'springsagritech@gmail.com',
   location: 'kericho, kenya',
   hours: '8:00am to 6:00pm',
   // International format, digits only, no plus sign (for example the country code followed by the number)

@@ -1,0 +1,25 @@
+---
+import Base from '../../layouts/Base.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { getCollection } from 'astro:content';
+import { site } from '../../data/site';
+
+const articles = (await getCollection('articles')).sort((a, b) => a.data.order - b.data.order);
+---
+<Base
+  title={`Grower's Knowledge Centre | ${site.legalName}`}
+  description="Practical guides for mushroom growers: spawn selection, compost and substrate preparation, production problems and post-harvest handling."
+>
+<main>
+  <header class="page-top"><div class="wrap">
+    <div class="crumbs"><a href="/">Home</a> / Grower's Knowledge Centre</div>
+    <h1 class="rv">Grower's Knowledge Centre</h1>
+    <p class="lead rv">Practical guidance on spawn selection, compost and substrate, production problems and harvesting.</p>
+  </div></header>
+  <section class="hub-sec"><div class="wrap">
+    <div class="grid">
+      {articles.map((a) => <ArticleCard id={a.id} title={a.data.title} category={a.data.category} />)}
+    </div>
+  </div></section>
+</main>
+</Base>
