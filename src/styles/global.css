@@ -484,3 +484,8 @@ h1, h2, h3, .lead, .sub {
 .prose th, .prose td { text-align: left; padding: 10px; border-bottom: 1px solid var(--line); }
 .prose th { color: var(--gold); }
 .prose img { max-width: 100%; height: auto; border-radius: 16px; }
+
+.logo { display: flex; align-items: center; }
+.logo img { height: 60px; width: auto; display: block; }
+
+@media (max-width: 700px) { .logo img { height: 32px; } }
