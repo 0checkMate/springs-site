@@ -139,7 +139,7 @@ nav .wrap {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 62px;
+  height: 80px;
 }
 .logo { font: 700 1.1rem Fraunces, serif; }
 .logo b { color: var(--clay); }
@@ -486,6 +486,9 @@ h1, h2, h3, .lead, .sub {
 .prose img { max-width: 100%; height: auto; border-radius: 16px; }
 
 .logo { display: flex; align-items: center; }
-.logo img { height: 60px; width: auto; display: block; }
+.logo img { height: 84px; width: auto; display: block; }
 
-@media (max-width: 700px) { .logo img { height: 32px; } }
+@media (max-width: 700px) {
+  nav .wrap { height: 66px; }
+  .logo img { height: 48px; }
+}
